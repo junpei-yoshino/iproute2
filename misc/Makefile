@@ -1,7 +1,8 @@
 SSOBJ=ss.o ssfilter.o
+JSSOBJ=jss.o ssfilter.o
 LNSTATOBJ=lnstat.o lnstat_util.o
 
-TARGETS=ss nstat ifstat rtacct lnstat
+TARGETS=ss nstat ifstat rtacct lnstat jss
 
 include ../Config
 
@@ -21,6 +22,9 @@ endif
 all: $(TARGETS)
 
 ss: $(SSOBJ)
+	$(QUIET_LINK)$(CC) $^ $(LDFLAGS) $(LDLIBS) -o $@
+
+jss: $(JSSOBJ)
 	$(QUIET_LINK)$(CC) $^ $(LDFLAGS) $(LDLIBS) -o $@
 
 nstat: nstat.c
